@@ -27,3 +27,6 @@ git merge main
 git add -A
 git commit
 git push origin pages
+
+# back to main page
+git checkout main
