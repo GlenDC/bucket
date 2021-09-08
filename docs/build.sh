@@ -24,5 +24,6 @@ git push origin main
 # checkout pages, merge main, commit & push
 git checkout pages
 git merge main
+git add -A
 git commit
 git push origin pages
