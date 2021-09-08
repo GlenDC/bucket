@@ -16,5 +16,17 @@ import View exposing (View)
 view : View msg
 view =
     { title = "Homepage"
-    , body = UI.layout [ Html.text "Track your activities, one drop at a time!" ]
+    , body = UI.layout [ Html.text
+        """
+        Track your activities, one drop at a time!
+        
+        Please come back later,
+        Elizabeth and Glen are working hard on making this
+        app a reality and provide you with a positive
+        tool to keep you guilt-free on track ;)
+
+        You can checkout the "Source Code" to track the progress,
+        and find our contact information on the "About Us" page.
+        """
+        ]
     }
