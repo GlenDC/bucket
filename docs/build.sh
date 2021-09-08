@@ -24,16 +24,6 @@ echo
 # go back to original dir
 cd "$ORIGINAL_DIR"
 
-echo "git publishing main (branch) content ..."
-echo
-# commit (msg via stdin)
-git add -A
-git commit
-# ... and publish
-git push origin main
-echo "-----------------------------------------------------------"
-echo
-
 echo "git publishing pages (branch) content ..."
 echo
 # checkout pages, merge main, commit & push
