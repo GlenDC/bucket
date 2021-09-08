@@ -28,6 +28,7 @@ echo "git publishing main (branch) content ..."
 echo
 # commit (msg via stdin)
 git add -A
+git commit
 # ... and publish
 git push origin main
 echo "-----------------------------------------------------------"
