@@ -44,16 +44,16 @@ head :
 head static =
     Seo.summary
         { canonicalUrlOverride = Nothing
-        , siteName = "elm-pages"
+        , siteName = "Bucket Time Tracker"
         , image =
             { url = Pages.Url.external "TODO"
             , alt = "elm-pages logo"
             , dimensions = Nothing
             , mimeType = Nothing
             }
-        , description = "TODO"
+        , description = "life long progress, one drop at a time"
         , locale = Nothing
-        , title = "TODO title" -- metadata.title -- TODO
+        , title = "Bucket Time Tracker"
         }
         |> Seo.website
 

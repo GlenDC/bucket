@@ -6,6 +6,8 @@ import Head.Seo as Seo
 import Page exposing (Page, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
+import Html exposing (Html)
+import Html.Attributes exposing ( href )
 import Shared
 import View exposing (View)
 
@@ -42,16 +44,16 @@ head :
 head static =
     Seo.summary
         { canonicalUrlOverride = Nothing
-        , siteName = "elm-pages"
+        , siteName = "Bucket Time Tracker"
         , image =
             { url = Pages.Url.external "TODO"
             , alt = "elm-pages logo"
             , dimensions = Nothing
             , mimeType = Nothing
             }
-        , description = "TODO"
+        , description = "life long progress, one drop at a time"
         , locale = Nothing
-        , title = "TODO title" -- metadata.title -- TODO
+        , title = "Bucket Time Tracker"
         }
         |> Seo.website
 
@@ -66,4 +68,28 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl sharedModel static =
-    View.placeholder "Index"
+    { title = "Home", body = [
+        Html.div []
+        [
+            Html.p [] [
+                Html.text "Track your activities, one drop at a time! "
+            ],
+            Html.p [] [
+                Html.text <| "Please come back later, Elizabeth and Glen are working hard "
+                    ++ "on making this app a reality and provide you with a positive tool "
+                    ++ "to keep you guilt-free on track ;)"
+            ],
+            Html.p [] [
+                Html.text <| " In the future you'll be able to get a premium subscription for Bucket "
+                    ++ "which will give you premium features such as cloud support, "
+                    ++ "share options, and access to closed beta releases."
+            ],
+            Html.p [] [
+                Html.text "You can check out the ",
+                Html.a [ href "https://github.com/plabajo/bucket" ] [ Html.text "Source Code" ],
+                Html.text " to track the progress, and reach out to us using our contact information on the ",
+                Html.a [ href "/about-us" ] [ Html.text "About Us" ],
+                Html.text " page."
+            ]
+        ]
+    ]}
