@@ -3,7 +3,7 @@ module Shared exposing (Data, Model, Msg(..), SharedMsg(..), template)
 import Browser.Navigation
 import DataSource
 import Html exposing (Html)
-import Html.Attributes exposing (class, id, href)
+import Html.Attributes exposing (class, id, href, attribute)
 import Html.Attributes.Aria exposing (role, ariaLabel)
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
@@ -11,6 +11,8 @@ import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import View exposing (View)
+import Html.Attributes.Aria exposing (ariaExpanded)
+import Html.Attributes.Aria exposing (ariaHidden)
 
 
 template : SharedTemplate Msg Model Data msg
@@ -85,6 +87,16 @@ data : DataSource.DataSource Data
 data =
     DataSource.succeed ()
 
+navItemWithIcon : String -> String -> String -> Html msg
+navItemWithIcon label link icon =
+    Html.a [ class "navbar-item", href link ]
+    [
+        Html.span [ class "icon is-small pr-3" ]
+        [
+            Html.i [ class icon ] []
+        ],
+        Html.span [] [ Html.text label ]
+    ]
 
 view :
     Data
@@ -109,21 +121,45 @@ view sharedData page model toMsg pageView =
             ]
             [
                 Html.div
+                [ class "navbar-brand" ]
+                [
+                    Html.a [ class "navbar-item", href "/" ]
+                    [
+                        Html.span [ class "icon is-small pr-3" ]
+                        [
+                            Html.i [ class "fas fa-tint" ] []
+                        ],
+                        Html.span [] [ Html.strong [] [ Html.text "Bucket" ] ]
+                    ],
+                    Html.a
+                    [
+                        role "button",
+                        class "navbar-burger",
+                        ariaLabel "menu",
+                        ariaExpanded "false",
+                        attribute "data-target" "navabarBucket"
+                    ]
+                    [
+                        Html.span [ ariaHidden True ] [],
+                        Html.span [ ariaHidden True ] [],
+                        Html.span [ ariaHidden True ] []
+                    ]
+                ],
+                Html.div
                 [ id "navabarBucket", class "navbar-menu" ]
                 [
                     Html.div
                     [ class "navbar-start" ]
                     [
-                        Html.a [ class "navbar-item", href "/" ] [ Html.text "Home" ],
-                        Html.a [ class "navbar-item", href "https://trixel.glendc.com" ] [ Html.text "App" ],
-                        Html.a [ class "navbar-item", href "/guide" ] [ Html.text "Guide" ]
+                        navItemWithIcon "App" "https://trixel.glendc.com" "fas fa-play",
+                        navItemWithIcon "Guide" "/guide" "fas fa-book"
                     ],
                     Html.div
                     [ class "navbar-end" ]
                     [
-                        Html.a [ class "navbar-item", href "https://github.com/plabajo/bucket" ] [ Html.text "Source" ],
-                        Html.a [ class "navbar-item", href "/about-us" ] [ Html.text "About Us" ],
-                        Html.a [ class "navbar-item", href "/donate" ] [ Html.text "Donate" ]
+                        navItemWithIcon "Source" "https://github.com/plabajo/bucket" "fab fa-github",
+                        navItemWithIcon "About Us" "/about-us" "fas fa-users",
+                        navItemWithIcon "Donate" "/donate" "fas fa-heart"
                     ]
                 ]
             ],
