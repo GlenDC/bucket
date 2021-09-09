@@ -152,7 +152,8 @@ view sharedData page model toMsg pageView =
                     [ class "navbar-start" ]
                     [
                         navItemWithIcon "App" "https://trixel.glendc.com" "fas fa-play",
-                        navItemWithIcon "Guide" "/guide" "fas fa-book"
+                        navItemWithIcon "Guide" "/guide" "fas fa-book",
+                        navItemWithIcon "Roadmap" "https://github.com/plabajo/bucket/milestones?direction=asc&sort=due_date&state=open" "fas fa-map"
                     ],
                     Html.div
                     [ class "navbar-end" ]
