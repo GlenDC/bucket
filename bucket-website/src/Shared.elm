@@ -1,12 +1,14 @@
-module Shared exposing (Data, Model, Msg(..), SharedMsg(..), template)
+module Shared exposing (Data, Model, Msg(..), SharedMsg(..), template, seoSummary)
 
 import Browser.Navigation
 import DataSource
+import Head.Seo as Seo
 import Html exposing (Html)
 import Html.Attributes exposing (class, id, href, attribute)
 import Html.Attributes.Aria exposing (role, ariaLabel)
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
+import Pages.Url
 import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
@@ -97,6 +99,24 @@ navItemWithIcon label link icon =
         ],
         Html.span [] [ Html.text label ]
     ]
+
+
+seoSummary : Seo.Common
+seoSummary =
+    Seo.summary
+    { canonicalUrlOverride = Nothing
+    , siteName = "Bucket Time Tracker"
+    , image =
+        { url = Pages.Url.external "TODO"
+        , alt = "elm-pages logo"
+        , dimensions = Nothing
+        , mimeType = Nothing
+        }
+    , description = "life long progress, one drop at a time"
+    , locale = Nothing
+    , title = "Bucket Time Tracker"
+    }
+
 
 view :
     Data

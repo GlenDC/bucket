@@ -44,19 +44,7 @@ head :
     StaticPayload Data RouteParams
     -> List Head.Tag
 head static =
-    Seo.summary
-        { canonicalUrlOverride = Nothing
-        , siteName = "Bucket Time Tracker"
-        , image =
-            { url = Pages.Url.external "TODO"
-            , alt = "elm-pages logo"
-            , dimensions = Nothing
-            , mimeType = Nothing
-            }
-        , description = "life long progress, one drop at a time"
-        , locale = Nothing
-        , title = "Bucket Time Tracker"
-        }
+    Shared.seoSummary
         |> Seo.website
 
 
