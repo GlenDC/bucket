@@ -16,7 +16,7 @@ echo
 echo "building bucket website..."
 echo
 cd "$SCRIPT_DIR/../bucket-website"
-elm-spa build
+elm-pages build
 echo "-----------------------------------------------------------"
 echo
 
@@ -24,7 +24,7 @@ echo
 echo "copying bucket website content from ${SCRIPT_DIR}/../bucket-website/public ..."
 echo
 cd "$SCRIPT_DIR"
-cp -a "${SCRIPT_DIR}/../bucket-website/public/." .
+cp -a "${SCRIPT_DIR}/../bucket-website/dist/." .
 echo "-----------------------------------------------------------"
 echo
 
