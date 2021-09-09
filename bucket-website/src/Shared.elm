@@ -211,5 +211,5 @@ view sharedData page model toMsg pageView =
             ]
         ]
         
-    , title = pageView.title
+    , title = "Bucket — " ++ pageView.title
     }

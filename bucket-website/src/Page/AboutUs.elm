@@ -54,7 +54,7 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl sharedModel static =
-    { title = "About Us", body = [
+    { title = "Team", body = [
         Html.div []
         [
             Html.p []
