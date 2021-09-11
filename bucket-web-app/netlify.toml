@@ -4,7 +4,6 @@
 
 [build.environment]
   ELM_HOME = "$NETLIFY_BUILD_BASE/cache/elm"
-  NO_ELM_TOOLING_INSTALL = "1"
 
 [[redirects]]
   from = "/*"

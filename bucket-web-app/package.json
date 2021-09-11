@@ -6,8 +6,9 @@
     "build": "elm-spa build"
   },
   "devDependencies": {
+    "elm": "^0.19.1",
     "elm-optimize-level-2": "^0.1.5",
-    "elm-spa": "6.0.4",
+    "elm-spa": "^6.0.4",
     "elm-review": "^2.5.5",
     "elm-tooling": "^1.4.0"
   }
