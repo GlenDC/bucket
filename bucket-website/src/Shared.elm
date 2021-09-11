@@ -171,7 +171,7 @@ view sharedData page model toMsg pageView =
                     Html.div
                     [ class "navbar-start" ]
                     [
-                        navItemWithIcon "App" "/app" "fas fa-play",
+                        navItemWithIcon "App" "https://app.bckt.xyz" "fas fa-play",
                         navItemWithIcon "Guide" "/guide" "fas fa-book",
                         navItemWithIcon "Blog" "/blog" "fas fa-newspaper",
                         navItemWithIcon "Roadmap" "https://github.com/plabajo/bucket/milestones?direction=asc&sort=due_date&state=open" "fas fa-map"
