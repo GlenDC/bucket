@@ -1,9 +1,9 @@
 {
   "name": "bucket-app",
   "scripts": {
-    "postinstall": "elm-tooling install",
-    "start": "elm-pages dev",
-    "build": "elm-pages build"
+    "postinstall": "npx elm-tooling install",
+    "start": "npx elm-pages dev",
+    "build": "npx elm-pages build"
   },
   "devDependencies": {
     "elm-optimize-level-2": "^0.1.5",
