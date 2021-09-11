@@ -23,6 +23,7 @@ layout children =
             [ Html.strong [ Attr.class "brand" ] [ viewLink "Home" Route.Home_ ]
             , Html.div [ Attr.class "splitter" ] []
             , viewAnyLink "Back to website" "https://bckt.xyz/"
+            , viewLink "Settings" Route.Settings
             ]
         , Html.main_ [] children
         ]
