@@ -1,13 +1,13 @@
 {
-  "name": "bucket-website",
+  "name": "bucket-web-app",
   "scripts": {
     "postinstall": "npx elm-tooling install",
-    "start": "npx elm-pages dev",
-    "build": "npx elm-pages build"
+    "start": "npx elm-spa server",
+    "build": "npx elm-spa build"
   },
   "devDependencies": {
     "elm-optimize-level-2": "^0.1.5",
-    "elm-pages": "2.1.9",
+    "elm-spa": "6.0.4",
     "elm-review": "^2.5.5",
     "elm-tooling": "^1.4.0"
   }
