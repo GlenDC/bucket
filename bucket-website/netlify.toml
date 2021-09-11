@@ -1,10 +1,7 @@
 [build]
-  functions = "functions/"
-  publish = "dist/"
-  command = "export ELM_HOME=\"$NETLIFY_BUILD_BASE/cache/elm\" && npm install --no-optional && npm run build"
+  publish = "./dist"
+  command = "npm run build"
 
-[dev]
-  command = "npm start"
-  targetPort = 1234
-  autoLaunch = true
-  framework = "#custom"
+[build.environment]
+  ELM_HOME = "$NETLIFY_BUILD_BASE/cache/elm"
+  NO_ELM_TOOLING_INSTALL = "1"
