@@ -1,6 +1,6 @@
 [build]
   publish = "./dist/"
-  command = "npm install --no-optional && npx --no-install elm-tooling install && npm install --no-optional && npm run build"
+  command = "npm install && npm run build"
 
 [build.environment]
   ELM_HOME = "$NETLIFY_BUILD_BASE/cache/elm"
