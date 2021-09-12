@@ -1,6 +1,6 @@
 {
     "type": "application",
-    "summary": "Bucket static generated website.",
+    "summary": "Bucket Localization module for the web projects",
     "license": "CC BY NC SA 4.0",
     "version": "0.1.0",
     "source-directories": [
