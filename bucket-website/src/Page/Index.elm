@@ -11,6 +11,8 @@ import Html.Attributes exposing ( href )
 import Shared
 import View exposing (View)
 
+import Bucket.L18n as L18n
+
 
 type alias Model =
     ()
@@ -61,6 +63,9 @@ view maybeUrl sharedModel static =
         [
             Html.p [] [
                 Html.text "Track your activities, one drop at a time! "
+            ],
+            Html.p [] [
+                Html.text L18n.hello
             ],
             Html.p [] [
                 Html.text <| "Please come back later, Elizabeth and Glen are working hard "

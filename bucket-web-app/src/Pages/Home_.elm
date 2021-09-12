@@ -4,6 +4,9 @@ import Html
 import UI
 import View exposing (View)
 
+import Bucket.L18n as L18n
+
+
 -- Shared.Model is our global application state,
 -- which might contain the signed-in user, settings,
 -- or other things that should persist as we move from one page to another.
@@ -16,8 +19,8 @@ import View exposing (View)
 view : View msg
 view =
     { title = "Bucket App"
-    , body = UI.layout [ Html.text
-        """
+    , body = UI.layout
+        [ Html.text """
         Track your activities, one drop at a time!
         
         Please come back later,
@@ -25,5 +28,6 @@ view =
         app a reality and provide you with a positive
         tool to keep you guilt-free on track ;)
         """
+        , Html.text <| L18n.hello
         ]
     }
