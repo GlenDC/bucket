@@ -10,6 +10,15 @@ export default {
   load: async function (elmLoaded) {
     const app = await elmLoaded;
     console.log("App loaded", app);
+
+    // custom ports
+    app.ports.getBrowserLanguages = () => {
+      if (navigator.languages && navigator.languages.length) {
+        return navigator.languages;
+      } else {
+        return [navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en'];
+      }
+    };
   },
   flags: function () {
     return "You can decode this in Shared.elm using Json.Decode.string!";

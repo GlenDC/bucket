@@ -3,7 +3,7 @@ module Shared exposing (Data, Model, Msg(..), SharedMsg(..), seoSummary, templat
 import Browser.Navigation
 import Bucket.L18n as L18n
 import Bucket.L18n.Html as L18nHtml
-import Bucket.L18n.Types exposing (Translator, Text(..))
+import Bucket.L18n.Types exposing (Text(..), Translator)
 import DataSource
 import Head.Seo as Seo
 import Html exposing (Html)
@@ -70,7 +70,7 @@ init navigationKey flags maybePagePath =
     ( { showMobileMenu = True
 
       -- TODO: support locale switching
-      , translate = L18n.translate L18n.En
+      , translate = L18n.translate L18n.Nl
       }
     , Cmd.none
     )
@@ -186,8 +186,8 @@ view sharedData page model toMsg pageView =
                 [ class "footer" ]
                 [ Html.div
                     [ class "content has-text-centered" ]
-                    [ L18nHtml.paragraph model.translate []
-                        <| WebFooter
+                    [ L18nHtml.paragraph model.translate [] <|
+                        WebFooter
                             { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
                             , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
                             , copyrightApp = "[GNU GPL v3](https://github.com/plabajo/bucket/blob/main/LICENSE)"
