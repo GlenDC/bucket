@@ -1,5 +1,6 @@
 module Bucket.L18n exposing
     ( Language(..)
+    , negotiateLanguage
     , translate
     )
 
@@ -13,6 +14,33 @@ type Language
     = En
     | Nl
     | Es
+
+
+negotiateLanguage : List String -> Language
+negotiateLanguage locales =
+    locales
+        |> List.foldl
+            (\str acc ->
+                case acc of
+                    Just locale ->
+                        Just locale
+
+                    Nothing ->
+                        case str |> String.split "-" |> List.head |> Maybe.withDefault "en" |> String.toLower |> String.trim of
+                            "en" ->
+                                Just En
+
+                            "nl" ->
+                                Just Nl
+
+                            "es" ->
+                                Just Es
+
+                            _ ->
+                                Nothing
+            )
+            Nothing
+        |> Maybe.withDefault En
 
 
 translate : Language -> Text -> String

@@ -3,19 +3,20 @@ module Shared exposing (Data, Model, Msg(..), SharedMsg(..), seoSummary, templat
 import Browser.Navigation
 import Bucket.L18n as L18n
 import Bucket.L18n.Html as L18nHtml
-import Bucket.L18n.Types exposing (Text(..), Translator)
+import Bucket.L18n.Types exposing (Translator, Text(..))
 import DataSource
 import Head.Seo as Seo
 import Html exposing (Html)
 import Html.Attributes exposing (attribute, class, href, id)
 import Html.Attributes.Aria exposing (ariaExpanded, ariaHidden, ariaLabel, role)
-import Pages.Flags
+import Pages.Flags exposing (Flags(..))
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
 import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import View exposing (View)
+import Json.Decode
 
 
 template : SharedTemplate Msg Model Data msg
@@ -52,6 +53,17 @@ type alias Model =
     }
 
 
+type alias Flags =
+    { availableLocales : List String
+    }
+
+
+flagsDecoder : Json.Decode.Decoder Flags
+flagsDecoder =
+    Json.Decode.map Flags
+        (Json.Decode.field "availableLocales" (Json.Decode.list Json.Decode.string))
+
+
 init :
     Maybe Browser.Navigation.Key
     -> Pages.Flags.Flags
@@ -68,9 +80,16 @@ init :
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
     ( { showMobileMenu = True
-
-      -- TODO: support locale switching
-      , translate = L18n.translate L18n.Nl
+      , translate = case flags of
+            BrowserFlags rawFlags ->
+                case Json.Decode.decodeValue flagsDecoder rawFlags of
+                    Ok decodedFlags ->
+                        L18n.negotiateLanguage decodedFlags.availableLocales
+                            |> L18n.translate
+                    Err _ ->
+                        L18n.translate L18n.En
+            PreRenderFlags ->
+                L18n.translate L18n.En
       }
     , Cmd.none
     )
@@ -186,8 +205,8 @@ view sharedData page model toMsg pageView =
                 [ class "footer" ]
                 [ Html.div
                     [ class "content has-text-centered" ]
-                    [ L18nHtml.paragraph model.translate [] <|
-                        WebFooter
+                    [ L18nHtml.paragraph model.translate []
+                        <| WebFooter
                             { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
                             , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
                             , copyrightApp = "[GNU GPL v3](https://github.com/plabajo/bucket/blob/main/LICENSE)"
