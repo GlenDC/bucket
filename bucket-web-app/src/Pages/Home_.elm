@@ -1,35 +1,23 @@
-module Pages.Home_ exposing (view)
+module Pages.Home_ exposing (page)
 
-import Html
 import UI
 import View exposing (View)
+import Page exposing (Page)
+import Shared exposing (Model)
+import Request exposing (Request)
+import Bucket.L18n.Types exposing (Text(..))
+import Bucket.L18n.Html as L18nHtml
 
--- TODO: move app localization to a shared model
+page : Model -> Request -> Page
+page model req =
+    Page.static
+        { view = view model
+        }
 
-import Bucket.L18n as L18n
-import Bucket.L18n.Types as L18nTypes
-
-
--- Shared.Model is our global application state,
--- which might contain the signed-in user, settings,
--- or other things that should persist as we move from one page to another.
--- Info: https://www.elm-spa.dev/guide/05-shared-state
-
--- Request is a record with access to the current route,
--- query parameters, and any other information about the current URL.
--- Info: https://www.elm-spa.dev/guide/04-requests
-
-view : View msg
-view =
-    { title = L18n.translate L18n.En L18nTypes.AppPageTitleHome
+view : Model -> View msg
+view model =
+    { title = model.translate AppPageHomeTitle
     , body = UI.layout
-        [ Html.text """
-        Track your activities, one drop at a time!
-        
-        Please come back later,
-        Elizabeth and Glen are working hard on making this
-        app a reality and provide you with a positive
-        tool to keep you guilt-free on track ;)
-        """
+        [ L18nHtml.paragraph model.translate [] AppPageHomeIntro
         ]
     }

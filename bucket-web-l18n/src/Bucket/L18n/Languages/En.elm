@@ -143,11 +143,30 @@ translate text =
                 ]
 
         -- App: Page: Home
-        AppPageTitleHome ->
+        AppPageHomeTitle ->
             "Bucket App"
 
+        AppPageHomeIntro ->
+            """
+            Track your activities, one drop at a time!
+            
+            Please come back later,
+            Elizabeth and Glen are working hard on making this
+            app a reality and provide you with a positive
+            tool to keep you guilt-free on track ;)
+            """
+
+        -- App: Page: Settings
+        AppPageSettingsTitle ->
+            "Bucket Settings"
+
+        AppPageSettingsIntro ->
+            """
+            No settings exposed yet, nothing to see here.
+            """
+
         -- App: Page: Not Found
-        AppPageTitleNotFound ->
+        AppPageNotFoundTitle ->
             "Bucket App — 404"
 
         AppPageNotFoundIntro ->

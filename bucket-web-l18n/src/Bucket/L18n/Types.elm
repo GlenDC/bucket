@@ -53,9 +53,13 @@ type
         , copyrightWeb : String
         }
       -- App: Page: Home
-    | AppPageTitleHome
+    | AppPageHomeTitle
+    | AppPageHomeIntro
+      -- App: Page: Settings
+    | AppPageSettingsTitle
+    | AppPageSettingsIntro
       -- App: Page: Not Found
-    | AppPageTitleNotFound
+    | AppPageNotFoundTitle
     | AppPageNotFoundIntro
 
 
