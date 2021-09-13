@@ -1,6 +1,7 @@
 module Page.Donate exposing (Model, Msg, Data, page)
 
-import Bucket.L18n.Types as L18nTypes
+import Bucket.L18n.Types exposing (Text(..))
+import Bucket.L18n.Html as L18nHtml
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
@@ -55,31 +56,12 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl model static =
-    { title = model.translator L18nTypes.WebPageTitleDonate, body = [
+    { title = WebPageTitleDonate, body = [
         Html.div []
-        [
-            Html.p [] [
-                Html.text <| "You can support us in many ways. "
-                ++ "Contributing to our software and meta content is one way. "
-                ++ "That can be done by heading over to our source code repository or reaching out to us. "
-                ++ "Providing us with feedback is another way to support us."
-            ],
-            Html.p [] [
-                Html.text <| " As we are however building, maintaining and supporting Bucket "
-                ++ "and other Plabajo projects in our spare time, in between parenting, work and other duties, "
-                ++ "some financial income is also welcome."
-            ],
-            Html.p [] [
-                Html.text <| " In the future you'll be able to get a premium subscription for Bucket "
-                    ++ "which will give you premium features such as cloud support, "
-                    ++ "share options, and access to closed beta releases."
-            ],
-            Html.p [] [
-                Html.text <| " You can also be a Patreon supporter. "
-                    ++ "This way you'll provide us with a monthly amount of your choosing, "
-                    ++ "which allows us to continue our work: ",
-                Html.a [ href "https://patreon.com/plabajo" ] [ Html.text "patreon.com/plabajo" ],
-                Html.text "."
-            ]
+        [ L18nHtml.paragraph model.translate [] WebPageDonateIntroP1
+        , L18nHtml.paragraph model.translate [] WebPageDonateIntroP2
+        , L18nHtml.paragraph model.translate [] WebPageDonateIntroP3
+        , L18nHtml.paragraph model.translate []
+            <| WebPageDonateIntroP4 { linkPatreon = "[patreon.com/plabajo](https://patreon.com/plabajo)" }
         ]
     ]}

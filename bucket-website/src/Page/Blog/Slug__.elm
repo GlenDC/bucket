@@ -1,6 +1,7 @@
 module Page.Blog.Slug__ exposing (Model, Msg, Data, page)
 
-import Bucket.L18n.Types as L18nTypes
+import Bucket.L18n.Types exposing (Text(..))
+import Bucket.L18n.Html as L18nHtml
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
@@ -64,15 +65,8 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl model static =
-    { title = model.translator L18nTypes.WebPageTitleBlog, body = [
+    { title = WebPageTitleBlog, body = [
         Html.div []
-        [
-            Html.p [] [
-                Html.text <| "Welcome on " ++ (
-                    case static.routeParams.slug of
-                        Just slug -> "blog page " ++ slug
-                        Nothing -> "the blog!"
-                )
-            ]
+        [ L18nHtml.paragraph model.translate [] WebPageBlogMessageIntro
         ]
     ]}

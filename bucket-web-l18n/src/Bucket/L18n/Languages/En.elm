@@ -6,42 +6,129 @@ import Bucket.L18n.Types exposing (Text(..))
 translate : Text -> String
 translate text =
     case text of
+        -- Misc
+        Bucket ->
+            "Bucket"
+
+        -- Website: Page: Home
         WebPageTitleHome ->
             "Home"
 
+        WebPageHomeIntroP1 ->
+            "Track your activities, one drop at a time!"
+
+        WebPageHomeIntroP2 ->
+            """
+            Please come back later, Elizabeth and Glen are working hard
+            on making this app a reality and provide you with a positive tool
+            to keep you guilt-free on track ;)
+            """
+
+        WebPageHomeIntroP3 ->
+            """
+            In the future you'll be able to get a premium subscription for Bucket
+            which will give you premium features such as cloud support,
+            share options, and access to closed beta releases.
+            """
+
+        WebPageHomeIntroP4 params ->
+            String.concat
+                [ "You can check out the [Source Code]("
+                , params.linkRepository
+                , ") to track the progress, and reach out to us using our contact information on the [About Us]("
+                , params.linkAboutUs
+                , "] page."
+                ]
+
+        -- Website: References: App
         WebNavItemApp ->
             "App"
 
+        -- Website: Page: Guide
         WebNavItemGuide ->
             "Guide"
 
         WebPageTitleGuide ->
             "Guide"
 
+        WebPageGuideMessageIntro ->
+            "Welcome to the Bucket Guide!"
+
+        -- Website: Page: Blog
         WebNavItemBlog ->
             "Blog"
 
         WebPageTitleBlog ->
             "Blog"
 
+        WebPageBlogMessageIntro ->
+            "Welcome on the Bucket Blog!"
+
+        -- Website: References: Roadmap
         WebNavItemRoadmap ->
             "Roadmap"
 
+        -- Website: References: Source Code
         WebNavItemSource ->
             "Source Code"
 
+        -- Website: Page: About
         WebNavItemAbout ->
             "About Us"
 
         WebPageTitleAbout ->
             "About Us"
 
+        WebPageAboutIntroStart params ->
+            String.concat
+                [ "**Bucket** is made with love and dedication by"
+                , params.creatorElizabeth
+                , " and "
+                , params.creatorGlen
+                , "."
+                ]
+
+        WebPageAboutIntroReachUs ->
+            "Reach out to one of us as follows:"
+
+        -- Website: Page: Donate
         WebNavItemDonate ->
             "Donate"
 
         WebPageTitleDonate ->
             "Donate"
 
+        WebPageDonateIntroP1 ->
+            """
+            You can support us in many ways.
+            Contributing to our software and meta content is one way.
+            That can be done by heading over to our source code repository or reaching out to us.
+            Providing us with feedback is another way to support us.
+            """
+
+        WebPageDonateIntroP2 ->
+            """
+            As we are however building, maintaining and supporting Bucket
+            and other Plabajo projects in our spare time, in between parenting, work and other duties,
+            some financial income is also welcome.
+            """
+
+        WebPageDonateIntroP3 ->
+            """
+            In the future you'll be able to get a premium subscription for Bucket
+            which will give you premium features such as cloud support,
+            share options, and access to closed beta releases.
+            """
+
+        WebPageDonateIntroP4 params ->
+            """
+            You can also be a Patreon supporter.
+            This way you'll provide us with a monthly amount of your choosing,
+            which allows us to continue our work:
+            """
+                ++ params.linkPatreon
+
+        -- Website: Footer
         WebFooter params ->
             String.concat
                 [ "Bucket by "
@@ -55,5 +142,16 @@ translate text =
                 , "."
                 ]
 
+        -- App: Page: Home
         AppPageTitleHome ->
             "Bucket App"
+
+        -- App: Page: Not Found
+        AppPageTitleNotFound ->
+            "Bucket App — 404"
+
+        AppPageNotFoundIntro ->
+            """
+            This drop could not be found,
+            look inwards and continue your journey :)
+            """

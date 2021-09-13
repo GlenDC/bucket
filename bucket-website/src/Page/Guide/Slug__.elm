@@ -1,6 +1,7 @@
 module Page.Guide.Slug__ exposing (Data, Model, Msg, page)
 
-import Bucket.L18n.Types as L18nTypes
+import Bucket.L18n.Types exposing (Text(..))
+import Bucket.L18n.Html as L18nHtml
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
@@ -65,20 +66,10 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl model static =
-    { title = model.translator L18nTypes.WebPageTitleGuide
+    { title = WebPageTitleGuide
     , body =
         [ Html.div []
-            [ Html.p []
-                [ Html.text <|
-                    "Welcome on "
-                        ++ (case static.routeParams.slug of
-                                Just slug ->
-                                    "guide page " ++ slug
-
-                                Nothing ->
-                                    "the guide!"
-                           )
-                ]
+            [ L18nHtml.paragraph model.translate [] WebPageGuideMessageIntro
             ]
         ]
     }

@@ -2,7 +2,8 @@ module Shared exposing (Data, Model, Msg(..), SharedMsg(..), seoSummary, templat
 
 import Browser.Navigation
 import Bucket.L18n as L18n
-import Bucket.L18n.Types as L18nTypes
+import Bucket.L18n.Html as L18nHtml
+import Bucket.L18n.Types exposing (Translator, Text(..))
 import DataSource
 import Head.Seo as Seo
 import Html exposing (Html)
@@ -45,13 +46,9 @@ type SharedMsg
     = NoOp
 
 
-type alias Translator =
-    L18nTypes.Text -> String
-
-
 type alias Model =
     { showMobileMenu : Bool
-    , translator : Translator
+    , translate : Translator
     }
 
 
@@ -73,7 +70,7 @@ init navigationKey flags maybePagePath =
     ( { showMobileMenu = True
 
       -- TODO: support locale switching
-      , translator = L18n.translate L18n.En
+      , translate = L18n.translate L18n.En
       }
     , Cmd.none
     )
@@ -99,13 +96,13 @@ data =
     DataSource.succeed ()
 
 
-navItemWithIcon : String -> String -> String -> Html msg
-navItemWithIcon label link icon =
+navItemWithIcon : Model -> Text -> String -> String -> Html msg
+navItemWithIcon model label link icon =
     Html.a [ class "navbar-item", href link ]
         [ Html.span [ class "icon is-small pr-3" ]
             [ Html.i [ class icon ] []
             ]
-        , Html.span [] [ Html.text label ]
+        , Html.span [] [ L18nHtml.text model.translate label ]
         ]
 
 
@@ -169,16 +166,16 @@ view sharedData page model toMsg pageView =
                     [ id "navabarBucket", class "navbar-menu" ]
                     [ Html.div
                         [ class "navbar-start" ]
-                        [ navItemWithIcon (model.translator L18nTypes.WebNavItemApp) "https://app.bckt.xyz" "fas fa-play"
-                        , navItemWithIcon (model.translator L18nTypes.WebNavItemGuide) "/guide" "fas fa-book"
-                        , navItemWithIcon (model.translator L18nTypes.WebNavItemBlog) "/blog" "fas fa-newspaper"
-                        , navItemWithIcon (model.translator L18nTypes.WebNavItemRoadmap) "https://github.com/plabajo/bucket/milestones?direction=asc&sort=due_date&state=open" "fas fa-map"
+                        [ navItemWithIcon model WebNavItemApp "https://app.bckt.xyz" "fas fa-play"
+                        , navItemWithIcon model WebNavItemGuide "/guide" "fas fa-book"
+                        , navItemWithIcon model WebNavItemBlog "/blog" "fas fa-newspaper"
+                        , navItemWithIcon model WebNavItemRoadmap "https://github.com/plabajo/bucket/milestones?direction=asc&sort=due_date&state=open" "fas fa-map"
                         ]
                     , Html.div
                         [ class "navbar-end" ]
-                        [ navItemWithIcon (model.translator L18nTypes.WebNavItemSource) "https://github.com/plabajo/bucket" "fab fa-github"
-                        , navItemWithIcon (model.translator L18nTypes.WebNavItemAbout) "/about-us" "fas fa-users"
-                        , navItemWithIcon (model.translator L18nTypes.WebNavItemDonate) "/donate" "fas fa-heart"
+                        [ navItemWithIcon model WebNavItemSource "https://github.com/plabajo/bucket" "fab fa-github"
+                        , navItemWithIcon model WebNavItemAbout "/about" "fas fa-users"
+                        , navItemWithIcon model WebNavItemDonate "/donate" "fas fa-heart"
                         ]
                     ]
                 ]
@@ -189,18 +186,15 @@ view sharedData page model toMsg pageView =
                 [ class "footer" ]
                 [ Html.div
                     [ class "content has-text-centered" ]
-                    [ Html.p []
-                        [ Html.text <|
-                            model.translator <|
-                                L18nTypes.WebFooter
-                                    { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
-                                    , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
-                                    , copyrightApp = "[GNU GPL v3](https://github.com/plabajo/bucket/blob/main/LICENSE)"
-                                    , copyrightWeb = "[CC BY NC SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)"
-                                    }
-                        ]
+                    [ L18nHtml.paragraph model.translate []
+                        <| WebFooter
+                            { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
+                            , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
+                            , copyrightApp = "[GNU GPL v3](https://github.com/plabajo/bucket/blob/main/LICENSE)"
+                            , copyrightWeb = "[CC BY NC SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)"
+                            }
                     ]
                 ]
             ]
-    , title = "Bucket — " ++ pageView.title
+    , title = "Bucket — " ++ model.translate pageView.title
     }

@@ -1,10 +1,11 @@
 module View exposing (View, map, placeholder)
 
 import Html exposing (Html)
+import Bucket.L18n.Types exposing (Text(..))
 
 
 type alias View msg =
-    { title : String
+    { title : Text
     , body : List (Html msg)
     }
 
@@ -18,6 +19,6 @@ map fn doc =
 
 placeholder : String -> View msg
 placeholder moduleName =
-    { title = "Bucket - " ++ moduleName
+    { title = Bucket
     , body = [ Html.text moduleName ]
     }

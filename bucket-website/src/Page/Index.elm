@@ -1,6 +1,7 @@
 module Page.Index exposing (Data, Model, Msg, page)
 
-import Bucket.L18n.Types as L18nTypes
+import Bucket.L18n.Types exposing (Text(..))
+import Bucket.L18n.Html as L18nHtml
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
@@ -57,31 +58,16 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl model static =
-    { title = model.translator L18nTypes.WebPageTitleHome
+    { title = WebPageTitleHome
     , body =
         [ Html.div []
-            [ Html.p []
-                [ Html.text "Track your activities, one drop at a time! "
-                ]
-            , Html.p []
-                [ Html.text <|
-                    "Please come back later, Elizabeth and Glen are working hard "
-                        ++ "on making this app a reality and provide you with a positive tool "
-                        ++ "to keep you guilt-free on track ;)"
-                ]
-            , Html.p []
-                [ Html.text <|
-                    " In the future you'll be able to get a premium subscription for Bucket "
-                        ++ "which will give you premium features such as cloud support, "
-                        ++ "share options, and access to closed beta releases."
-                ]
-            , Html.p []
-                [ Html.text "You can check out the "
-                , Html.a [ href "https://github.com/plabajo/bucket" ] [ Html.text "Source Code" ]
-                , Html.text " to track the progress, and reach out to us using our contact information on the "
-                , Html.a [ href "/about-us" ] [ Html.text "About Us" ]
-                , Html.text " page."
-                ]
+            [ L18nHtml.paragraph model.translate [] WebPageHomeIntroP1
+            , L18nHtml.paragraph model.translate [] WebPageHomeIntroP2
+            , L18nHtml.paragraph model.translate [] WebPageHomeIntroP3
+            , L18nHtml.paragraph model.translate [] <| WebPageHomeIntroP4
+                    { linkRepository = "https://github.com/plabajo/bucket"
+                    , linkAboutUs = "/about"
+                    }
             ]
         ]
     }
