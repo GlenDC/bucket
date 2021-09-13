@@ -3,10 +3,10 @@ module Bucket.L18n exposing
     , translate
     )
 
-import Bucket.Languages.En
-import Bucket.Languages.Es
-import Bucket.Languages.Nl
-import Bucket.Languages.Types exposing (Text(..))
+import Bucket.L18n.Languages.En
+import Bucket.L18n.Languages.Es
+import Bucket.L18n.Languages.Nl
+import Bucket.L18n.Types exposing (Text(..))
 
 
 type Language
@@ -19,20 +19,20 @@ translate : Language -> Text -> String
 translate lang text =
     case lang of
         En ->
-            Bucket.Languages.En.translate text
+            Bucket.L18n.Languages.En.translate text
 
         Nl ->
-            case Bucket.Languages.Nl.translate text of
+            case Bucket.L18n.Languages.Nl.translate text of
                 Just t ->
                     t
 
                 Nothing ->
-                    Bucket.Languages.En.translate text
+                    Bucket.L18n.Languages.En.translate text
 
         Es ->
-            case Bucket.Languages.Es.translate text of
+            case Bucket.L18n.Languages.Es.translate text of
                 Just t ->
                     t
 
                 Nothing ->
-                    Bucket.Languages.En.translate text
+                    Bucket.L18n.Languages.En.translate text

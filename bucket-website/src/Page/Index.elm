@@ -1,6 +1,6 @@
 module Page.Index exposing (Data, Model, Msg, page)
 
-import Bucket.Languages.Types as L18nTypes
+import Bucket.L18n.Types as L18nTypes
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo

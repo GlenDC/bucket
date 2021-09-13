@@ -1,6 +1,6 @@
-module Bucket.Languages.Es exposing (translate)
+module Bucket.L18n.Languages.Nl exposing (translate)
 
-import Bucket.Languages.Types exposing (Text(..))
+import Bucket.L18n.Types exposing (Text(..))
 
 
 translate : Text -> Maybe String

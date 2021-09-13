@@ -1,7 +1,7 @@
 module TestL18n exposing (..)
 
 import Bucket.L18n exposing (Language(..), translate)
-import Bucket.Languages.Types exposing (Text(..))
+import Bucket.L18n.Types exposing (Text(..))
 import Expect
 import Test exposing (..)
 

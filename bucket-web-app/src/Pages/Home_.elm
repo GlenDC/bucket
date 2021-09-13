@@ -7,7 +7,7 @@ import View exposing (View)
 -- TODO: move app localization to a shared model
 
 import Bucket.L18n as L18n
-import Bucket.Languages.Types as L18nTypes
+import Bucket.L18n.Types as L18nTypes
 
 
 -- Shared.Model is our global application state,

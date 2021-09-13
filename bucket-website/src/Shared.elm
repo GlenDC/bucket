@@ -2,7 +2,7 @@ module Shared exposing (Data, Model, Msg(..), SharedMsg(..), seoSummary, templat
 
 import Browser.Navigation
 import Bucket.L18n as L18n
-import Bucket.Languages.Types as L18nTypes
+import Bucket.L18n.Types as L18nTypes
 import DataSource
 import Head.Seo as Seo
 import Html exposing (Html)

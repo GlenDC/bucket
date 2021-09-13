@@ -1,4 +1,4 @@
-module Bucket.Languages.Types exposing (Text(..))
+module Bucket.L18n.Types exposing (Text(..))
 
 
 type Text

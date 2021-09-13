@@ -1,6 +1,6 @@
-module Bucket.Languages.En exposing (translate)
+module Bucket.L18n.Languages.En exposing (translate)
 
-import Bucket.Languages.Types exposing (Text(..))
+import Bucket.L18n.Types exposing (Text(..))
 
 
 translate : Text -> String
