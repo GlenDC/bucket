@@ -1,5 +1,6 @@
 module Page.Blog.Slug__ exposing (Model, Msg, Data, page)
 
+import Bucket.Languages.Types as L18nTypes
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
@@ -62,8 +63,8 @@ view :
     -> Shared.Model
     -> StaticPayload Data RouteParams
     -> View Msg
-view maybeUrl sharedModel static =
-    { title = "Blog", body = [
+view maybeUrl model static =
+    { title = model.translator L18nTypes.WebPageTitleBlog, body = [
         Html.div []
         [
             Html.p [] [

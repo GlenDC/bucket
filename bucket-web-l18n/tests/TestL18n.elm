@@ -1,15 +1,25 @@
 module TestL18n exposing (..)
 
+import Bucket.L18n exposing (Language(..), translate)
+import Bucket.Languages.Types exposing (Text(..))
 import Expect
-import Bucket.L18n as L18n
 import Test exposing (..)
 
 
 suite : Test
 suite =
-    describe "simple"
-        [ test "2 char language" <|
-                \_ ->
-                    Expect.equal "Hello, L18n!" <|
-                        L18n.hello
+    describe "translate English phrases"
+        [ test "simple phrase" <|
+            \_ ->
+                Expect.equal "Guide" <|
+                    translate En WebNavItemGuide
+        , test "phrase with context" <|
+            \_ ->
+                Expect.equal "Bucket by Elizabeth C. GB and Glen H. J. DC. The source code is licensed by GNU GPL v3. This website is licensed by CC BY NC SA 4.0." <|
+                    translate En <| WebFooter 
+                        { creatorElizabeth = "Elizabeth C. GB"
+                        , creatorGlen = "Glen H. J. DC"
+                        , copyrightApp = "GNU GPL v3"
+                        , copyrightWeb = "CC BY NC SA 4.0"
+                        }
         ]

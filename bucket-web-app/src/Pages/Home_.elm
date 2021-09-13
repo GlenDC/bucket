@@ -4,7 +4,10 @@ import Html
 import UI
 import View exposing (View)
 
+-- TODO: move app localization to a shared model
+
 import Bucket.L18n as L18n
+import Bucket.Languages.Types as L18nTypes
 
 
 -- Shared.Model is our global application state,
@@ -18,7 +21,7 @@ import Bucket.L18n as L18n
 
 view : View msg
 view =
-    { title = "Bucket App"
+    { title = L18n.translate L18n.En L18nTypes.AppPageTitleHome
     , body = UI.layout
         [ Html.text """
         Track your activities, one drop at a time!
@@ -28,6 +31,5 @@ view =
         app a reality and provide you with a positive
         tool to keep you guilt-free on track ;)
         """
-        , Html.text <| L18n.hello
         ]
     }

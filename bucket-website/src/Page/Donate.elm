@@ -1,5 +1,6 @@
 module Page.Donate exposing (Model, Msg, Data, page)
 
+import Bucket.Languages.Types as L18nTypes
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
@@ -53,8 +54,8 @@ view :
     -> Shared.Model
     -> StaticPayload Data RouteParams
     -> View Msg
-view maybeUrl sharedModel static =
-    { title = "Donate", body = [
+view maybeUrl model static =
+    { title = model.translator L18nTypes.WebPageTitleDonate, body = [
         Html.div []
         [
             Html.p [] [
