@@ -10,8 +10,39 @@ translate text =
         WebPageTitleHome ->
             Just "Start Pagina"
 
-        WebPageHomeIntroP1 ->
-            Just "Houd uw activiteiten bij, druppel voor druppel!"
+        WebPageHomeIntro params ->
+            String.concat
+                [ "**Bucket** De Gratis en Open Source Tijds tracker voor "
+                , params.subject
+                , " wie "
+                , params.topic
+                , "."
+                ]
+            |> Just
+
+        WebPageHomeIntroSubjectA ->
+            Just "drukke ouders"
+
+        WebPageHomeIntroSubjectB ->
+            Just "iedereen"
+
+        WebPageHomeIntroSubjectC ->
+            Just "dromers"
+
+        WebPageHomeIntroSubjectD ->
+            Just "spelmakers"
+
+        WebPageHomeIntroTopicA ->
+            Just "ongelimiteerd wil groeien"
+
+        WebPageHomeIntroTopicB ->
+            Just "zijn toegewijd"
+
+        WebPageHomeIntroTopicC ->
+            Just"hun doelen bereiken"
+
+        WebPageHomeIntroTopicD ->
+            Just "zaken gedaan krijgen"
 
         -- Website: Page: Guide
         WebNavItemGuide ->

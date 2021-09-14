@@ -7,13 +7,18 @@ type
     = Bucket
       -- Website: Page: Home
     | WebPageTitleHome
-    | WebPageHomeIntroP1
-    | WebPageHomeIntroP2
-    | WebPageHomeIntroP3
-    | WebPageHomeIntroP4
-        { linkRepository : String
-        , linkAboutUs : String
+    | WebPageHomeIntro
+        { subject : String
+        , topic : String
         }
+    | WebPageHomeIntroSubjectA
+    | WebPageHomeIntroSubjectB
+    | WebPageHomeIntroSubjectC
+    | WebPageHomeIntroSubjectD
+    | WebPageHomeIntroTopicA
+    | WebPageHomeIntroTopicB
+    | WebPageHomeIntroTopicC
+    | WebPageHomeIntroTopicD
       -- Website: References: App
     | WebNavItemApp
       -- Website: Page: Guide

@@ -14,31 +14,38 @@ translate text =
         WebPageTitleHome ->
             "Home"
 
-        WebPageHomeIntroP1 ->
-            "Track your activities, one drop at a time!"
-
-        WebPageHomeIntroP2 ->
-            """
-            Please come back later, Elizabeth and Glen are working hard
-            on making this app a reality and provide you with a positive tool
-            to keep you guilt-free on track ;)
-            """
-
-        WebPageHomeIntroP3 ->
-            """
-            In the future you'll be able to get a premium subscription for Bucket
-            which will give you premium features such as cloud support,
-            share options, and access to closed beta releases.
-            """
-
-        WebPageHomeIntroP4 params ->
+        WebPageHomeIntro params ->
             String.concat
-                [ "You can check out the [Source Code]("
-                , params.linkRepository
-                , ") to track the progress, and reach out to us using our contact information on the [About Us]("
-                , params.linkAboutUs
-                , "] page."
+                [ "**Bucket** The Free and Open Source Time Tracker for "
+                , params.subject
+                , " who "
+                , params.topic
+                , "."
                 ]
+
+        WebPageHomeIntroSubjectA ->
+            "busy parents"
+
+        WebPageHomeIntroSubjectB ->
+            "everyone"
+
+        WebPageHomeIntroSubjectC ->
+            "dreamers"
+
+        WebPageHomeIntroSubjectD ->
+            "game changers"
+
+        WebPageHomeIntroTopicA ->
+            "grow to infinity"
+
+        WebPageHomeIntroTopicB ->
+            "are dedicated"
+
+        WebPageHomeIntroTopicC ->
+            "reach their goals"
+
+        WebPageHomeIntroTopicD ->
+            "get things done"
 
         -- Website: References: App
         WebNavItemApp ->
