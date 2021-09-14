@@ -82,12 +82,11 @@ init navigationKey flags maybePagePath =
     ( { showMobileMenu = True
       , translate = case flags of
             BrowserFlags rawFlags ->
-                case Json.Decode.decodeValue flagsDecoder rawFlags of
-                    Ok decodedFlags ->
-                        L18n.negotiateLanguage decodedFlags.availableLocales
-                            |> L18n.translate
-                    Err _ ->
-                        L18n.translate L18n.En
+                Json.Decode.decodeValue flagsDecoder rawFlags
+                |> Result.andThen (\df -> L18n.negotiateLanguage df.availableLocales |> Ok)
+                |> Result.withDefault L18n.En
+                |> L18n.translate
+
             PreRenderFlags ->
                 L18n.translate L18n.En
       }
