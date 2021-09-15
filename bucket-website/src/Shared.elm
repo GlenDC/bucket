@@ -194,7 +194,7 @@ view sharedData page model toMsg pageView =
                         [ class "navbar-start" ]
                         [ navItemWithIcon model WebNavItemApp "https://app.bckt.xyz" "fas fa-play"
                         , navItemWithIcon model WebNavItemGuide "/guide" "fas fa-book"
-                        , navItemWithIcon model WebNavItemBlog "/blog" "fas fa-newspaper"
+                        , navItemWithIcon model WebNavItemBlog  "https://plabajo.tech/blog" "fas fa-newspaper"
                         , navItemWithIcon model WebNavItemRoadmap "https://github.com/plabajo/bucket/milestones?direction=asc&sort=due_date&state=open" "fas fa-map"
                         ]
                     , Html.div
