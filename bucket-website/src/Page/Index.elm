@@ -14,19 +14,20 @@ import Pages.Url
 import Path exposing (Path)
 import Random
 import Shared
-import View exposing (View)
 import Task
+import Util.Random exposing (RandomItemGeneratorState, generateRandomItem, randomItemGeneratorState, updateRandomItemGeneratorState)
+import View exposing (View)
 
 
 type alias Model =
-    { randomIntroTopic : Text
-    , randomIntroSubject : Text
+    { randomIntroSubjects : RandomItemGeneratorState Text
+    , randomIntroTopics : RandomItemGeneratorState Text
     }
 
 
 type Msg
-    = GenerateRandomIndices
-    | NewRandomIndices ( Int, Int )
+    = GenerateRandomSubjectAndTopic
+    | NewRandomSubjectAndTopic ( ( Maybe Text, List Text ), ( Maybe Text, List Text ) )
 
 
 type alias RouteParams =
@@ -59,46 +60,20 @@ type alias Data =
     ()
 
 
-randomIntroTopic : Int -> Text
-randomIntroTopic index =
-    case modBy 4 index of
-        1 ->
-            WebPageHomeIntroTopicB
-
-        2 ->
-            WebPageHomeIntroTopicC
-
-        3 ->
-            WebPageHomeIntroTopicD
-
-        _ ->
-            WebPageHomeIntroTopicA
-
-
-randomIntroSubject : Int -> Text
-randomIntroSubject index =
-    case modBy 4 index of
-        1 ->
-            WebPageHomeIntroSubjectB
-
-        2 ->
-            WebPageHomeIntroSubjectC
-
-        3 ->
-            WebPageHomeIntroSubjectD
-
-        _ ->
-            WebPageHomeIntroSubjectA
-
-
 init :
     Maybe PageUrl
     -> Shared.Model
     -> StaticPayload Data RouteParams
     -> ( Model, Cmd Msg )
 init maybeUrl model static =
-    ( Model WebPageHomeIntroTopicA WebPageHomeIntroSubjectA
-    , Task.succeed GenerateRandomIndices |> Task.perform identity
+    ( Model
+        (randomItemGeneratorState WebPageHomeIntroSubjectA
+            [ WebPageHomeIntroSubjectB, WebPageHomeIntroSubjectC, WebPageHomeIntroSubjectD ]
+        )
+        (randomItemGeneratorState WebPageHomeIntroTopicA
+            [ WebPageHomeIntroTopicB, WebPageHomeIntroTopicC, WebPageHomeIntroTopicD ]
+        )
+    , Task.succeed GenerateRandomSubjectAndTopic |> Task.perform identity
     )
 
 
@@ -112,11 +87,25 @@ update :
     -> ( Model, Cmd Msg )
 update pageUrl maybeNavKey sharedModel static msg model =
     case msg of
-        GenerateRandomIndices ->
-            ( model, Random.generate NewRandomIndices (Random.pair (Random.int 0 4) (Random.int 0 4)) )
+        GenerateRandomSubjectAndTopic ->
+            let
+                cmd =
+                    Random.pair
+                        (generateRandomItem model.randomIntroSubjects)
+                        (generateRandomItem model.randomIntroTopics)
+                        |> Random.generate NewRandomSubjectAndTopic
+            in
+            ( model, cmd )
 
-        NewRandomIndices ( indexTopic, indexSubject ) ->
-            ( Model (randomIntroTopic indexTopic) (randomIntroSubject indexSubject), Cmd.none )
+        NewRandomSubjectAndTopic ( ( maybeNewSubject, otherSubjects ), ( maybeNewTopic, otherTopics ) ) ->
+            let
+                newModel =
+                    { model
+                        | randomIntroSubjects = updateRandomItemGeneratorState model.randomIntroSubjects maybeNewSubject otherSubjects
+                        , randomIntroTopics = updateRandomItemGeneratorState model.randomIntroTopics maybeNewTopic otherTopics
+                    }
+            in
+            ( newModel, Cmd.none )
 
 
 subscriptions :
@@ -141,8 +130,8 @@ view maybeUrl sharedModel model static =
         [ Html.div []
             [ L18nHtml.paragraph sharedModel.translate [] <|
                 WebPageHomeIntro
-                    { subject = sharedModel.translate model.randomIntroSubject
-                    , topic = sharedModel.translate model.randomIntroTopic
+                    { subject = sharedModel.translate model.randomIntroSubjects.activeItem
+                    , topic = sharedModel.translate model.randomIntroTopics.activeItem
                     }
             ]
         ]
