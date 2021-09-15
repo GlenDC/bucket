@@ -33,10 +33,10 @@ translate text =
             "dreamers"
 
         WebPageHomeIntroSubjectD ->
-            "game changers"
+            "are game changers"
 
         WebPageHomeIntroTopicA ->
-            "grow to infinity"
+            "grow forever"
 
         WebPageHomeIntroTopicB ->
             "are dedicated"

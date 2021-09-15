@@ -17,6 +17,7 @@ import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import View exposing (View)
+import Random
 
 
 template : SharedTemplate Msg Model Data msg
@@ -50,18 +51,21 @@ type SharedMsg
 type alias Model =
     { showMobileMenu : Bool
     , translate : Translator
+    , randomSeed : Random.Seed
     }
 
 
 type alias Flags =
     { availableLocales : List String
+    , initialRandomSeed : Int
     }
 
 
 flagsDecoder : Json.Decode.Decoder Flags
 flagsDecoder =
-    Json.Decode.map Flags
+    Json.Decode.map2 Flags
         (Json.Decode.field "availableLocales" (Json.Decode.list Json.Decode.string))
+        (Json.Decode.field "initialRandomSeed" Json.Decode.int)
 
 
 init :
@@ -80,19 +84,19 @@ init :
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
     let
-        translate =
+        ( language, seed ) =
             case flags of
                 BrowserFlags rawFlags ->
                     Json.Decode.decodeValue flagsDecoder rawFlags
-                        |> Result.andThen (\df -> L18n.negotiateLanguage df.availableLocales |> Ok)
-                        |> Result.withDefault L18n.En
-                        |> L18n.translate
+                        |> Result.andThen (\df -> ( L18n.negotiateLanguage df.availableLocales, df.initialRandomSeed ) |> Ok)
+                        |> Result.withDefault ( L18n.En, 0 )
 
                 PreRenderFlags ->
-                    L18n.translate L18n.En
+                    ( L18n.En, 0 )
     in
     ( { showMobileMenu = True
-      , translate = translate
+      , translate = L18n.translate language
+      , randomSeed = Random.initialSeed seed
       }
     , Cmd.none
     )

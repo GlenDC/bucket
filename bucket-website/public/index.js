@@ -13,6 +13,11 @@ export default {
   },
   flags: function () {
     return {
+      initialRandomSeed: (() => {
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        return array[0];
+      })(),
       availableLocales: (() => {
         if (navigator.languages && navigator.languages.length) {
           return navigator.languages;

@@ -1,11 +1,12 @@
 module Util.Random exposing
     ( RandomItemGeneratorState
     , generateRandomItem
+    , nextRandomActiveItem
     , randomItemGeneratorState
     , updateRandomItemGeneratorState
     )
 
-import Random exposing (Generator)
+import Random exposing (Generator, Seed)
 import Random.List exposing (choose)
 
 
@@ -19,6 +20,21 @@ type alias RandomItemGeneratorState a =
 generateRandomItem : RandomItemGeneratorState a -> Generator ( Maybe a, List a )
 generateRandomItem state =
     choose state.otherItems
+
+
+nextRandomActiveItem : Seed -> RandomItemGeneratorState a -> ( Seed, RandomItemGeneratorState a )
+nextRandomActiveItem seed state =
+    Random.step
+        (generateRandomItem state)
+        seed
+        |> (\( ( maybeActiveItem, otherItems ), newSeed ) ->
+                ( newSeed
+                , { state
+                    | activeItem = Maybe.withDefault state.defaultItem maybeActiveItem
+                    , otherItems = state.activeItem :: otherItems
+                  }
+                )
+           )
 
 
 randomItemGeneratorState : a -> List a -> RandomItemGeneratorState a

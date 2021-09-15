@@ -15,7 +15,8 @@ import Path exposing (Path)
 import Random
 import Shared
 import Task
-import Util.Random exposing (RandomItemGeneratorState, generateRandomItem, randomItemGeneratorState, updateRandomItemGeneratorState)
+import Time
+import Util.Random exposing (RandomItemGeneratorState, generateRandomItem, nextRandomActiveItem, randomItemGeneratorState, updateRandomItemGeneratorState)
 import View exposing (View)
 
 
@@ -26,7 +27,7 @@ type alias Model =
 
 
 type Msg
-    = GenerateRandomSubjectAndTopic
+    = GenerateRandomSubjectAndTopic Time.Posix
     | NewRandomSubjectAndTopic ( ( Maybe Text, List Text ), ( Maybe Text, List Text ) )
 
 
@@ -65,15 +66,21 @@ init :
     -> Shared.Model
     -> StaticPayload Data RouteParams
     -> ( Model, Cmd Msg )
-init maybeUrl model static =
-    ( Model
-        (randomItemGeneratorState WebPageHomeIntroSubjectA
-            [ WebPageHomeIntroSubjectB, WebPageHomeIntroSubjectC, WebPageHomeIntroSubjectD ]
-        )
-        (randomItemGeneratorState WebPageHomeIntroTopicA
-            [ WebPageHomeIntroTopicB, WebPageHomeIntroTopicC, WebPageHomeIntroTopicD ]
-        )
-    , Task.succeed GenerateRandomSubjectAndTopic |> Task.perform identity
+init maybeUrl sharedModel static =
+    let
+        ( nextSeed, randomIntroSubjects ) =
+            randomItemGeneratorState WebPageHomeIntroSubjectA
+                [ WebPageHomeIntroSubjectB, WebPageHomeIntroSubjectC, WebPageHomeIntroSubjectD ]
+                |> nextRandomActiveItem sharedModel.randomSeed
+
+        ( _, randomIntroTopics ) =
+            randomItemGeneratorState WebPageHomeIntroTopicA
+                [ WebPageHomeIntroTopicB, WebPageHomeIntroTopicC, WebPageHomeIntroTopicD ]
+                |> nextRandomActiveItem nextSeed
+    in
+    ( Model randomIntroSubjects randomIntroTopics
+    , Cmd.none
+      -- Task.succeed GenerateRandomSubjectAndTopic |> Task.perform identity
     )
 
 
@@ -87,7 +94,7 @@ update :
     -> ( Model, Cmd Msg )
 update pageUrl maybeNavKey sharedModel static msg model =
     case msg of
-        GenerateRandomSubjectAndTopic ->
+        GenerateRandomSubjectAndTopic _ ->
             let
                 cmd =
                     Random.pair
@@ -115,7 +122,8 @@ subscriptions :
     -> Model
     -> Sub Msg
 subscriptions maybeUrl route path model =
-    Sub.none
+    -- Generate a new random topic & subject in hero banner every 3s
+    Time.every 3000 GenerateRandomSubjectAndTopic
 
 
 view :
