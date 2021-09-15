@@ -36,11 +36,12 @@ type
       -- Website: Page: About
     | WebNavItemAbout
     | WebPageTitleAbout
-    | WebPageAboutIntroStart
-        { creatorGlen : String
-        , creatorElizabeth : String
+    | WebPageAboutIntro
+        { creatorElizabeth : String
+        , creatorGlen : String
+        , emailElizabeth : String
+        , emailGlen : String
         }
-    | WebPageAboutIntroReachUs
       -- Website: Page: Donate
     | WebNavItemDonate
     | WebPageTitleDonate

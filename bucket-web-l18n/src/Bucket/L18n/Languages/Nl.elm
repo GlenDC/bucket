@@ -68,18 +68,24 @@ translate text =
         WebPageTitleAbout ->
             Just "Over Ons"
 
-        WebPageAboutIntroStart params ->
-            Just <|
-                String.concat
-                    [ "**Bucket** is gemaakt met liefde en passie door "
-                    , params.creatorElizabeth
-                    , " en "
-                    , params.creatorGlen
-                    , "."
-                    ]
+        WebPageAboutIntro params ->
+            Just <| String.concat
+                [ "**Bucket** is gemaakt met liefde en passie door "
+                , params.creatorElizabeth
+                , " en "
+                , params.creatorGlen
+                , "."
+                , """
 
-        WebPageAboutIntroReachUs ->
-            Just "Bereik ons door gebruik te maken van één van onderstaande addressen:"
+Indien gewenst kan us ons bereiken als volgend:
+
+- Elizabeth kan gecontacteerd worden per email via """
+                , params.emailElizabeth
+                , """;
+- en Glen kan bereikt worden via """
+                , params.creatorGlen
+                , "."
+                ]
 
         -- Website: Page: Donate
         WebNavItemDonate ->

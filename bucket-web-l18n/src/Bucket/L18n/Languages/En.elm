@@ -88,17 +88,24 @@ who _"""
         WebPageTitleAbout ->
             "About Us"
 
-        WebPageAboutIntroStart params ->
+        WebPageAboutIntro params ->
             String.concat
                 [ "**Bucket** is made with love and dedication by "
                 , params.creatorElizabeth
                 , " and "
                 , params.creatorGlen
                 , "."
-                ]
+                , """
 
-        WebPageAboutIntroReachUs ->
-            "Reach out to one of us as follows:"
+Should you wish, please reach out to us as follows:
+
+- Elizabeth can be messaged by mail at """
+                , params.emailElizabeth
+                , """;
+- and Glen can be mailed using """
+                , params.creatorGlen
+                , "."
+                ]
 
         -- Website: Page: Donate
         WebNavItemDonate ->
@@ -148,12 +155,12 @@ which allows us to continue our work:
 
         AppPageHomeIntro ->
             """
-            Track your activities, one drop at a time!
-            
-            Please come back later,
-            Elizabeth and Glen are working hard on making this
-            app a reality and provide you with a positive
-            tool to keep you guilt-free on track ;)
+Track your activities, one drop at a time!
+
+Please come back later,
+Elizabeth and Glen are working hard on making this
+app a reality and provide you with a positive
+tool to keep you guilt-free on track ;)
             """
 
         -- App: Page: Settings

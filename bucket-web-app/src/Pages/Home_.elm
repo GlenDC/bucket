@@ -18,6 +18,6 @@ view : Model -> View msg
 view model =
     { title = model.translate AppPageHomeTitle
     , body = UI.layout
-        [ L18nHtml.paragraph model.translate [] AppPageHomeIntro
+        [ L18nHtml.mdBlock model.translate [] AppPageHomeIntro
         ]
     }

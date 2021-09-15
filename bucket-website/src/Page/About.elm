@@ -60,19 +60,12 @@ view :
 view maybeUrl model static =
     { title = WebPageTitleAbout
     , body =
-        [ Html.div []
-            [ L18nHtml.mdBlock model.translate [] <|
-                WebPageAboutIntroStart
-                    { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
-                    , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
-                    }
-            ]
-        , Html.div []
-            [ L18nHtml.paragraph model.translate [] WebPageAboutIntroReachUs
-            , Html.ul []
-                [ Html.li [] [ Html.a [ href "mailto:elizabeth@bckt.xyz" ] [ Html.text "elizabeth@bckt.xyz" ] ]
-                , Html.li [] [ Html.a [ href "mailto:glen@bckt.xyz" ] [ Html.text "glen@bckt.xyz" ] ]
-                ]
-            ]
+        [ L18nHtml.mdBlock model.translate [] <|
+            WebPageAboutIntro
+                { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
+                , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
+                , emailElizabeth = "[elizabeth@bckt.xyz](mailto:elizabeth@bckt.xyz)"
+                , emailGlen = "[glen@bckt.xyz](mailto:glen@bckt.xyz)"
+                }
         ]
     }
