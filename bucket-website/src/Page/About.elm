@@ -3,7 +3,7 @@ module Page.About exposing (Data, Model, Msg, page)
 import Bucket.L18n.Html as L18nHtml
 import Bucket.L18n.Types exposing (Text(..))
 import DataSource exposing (DataSource)
-import Head 
+import Head
 import Head.Seo as Seo
 import Html exposing (Html)
 import Html.Attributes exposing (href)
@@ -61,18 +61,17 @@ view maybeUrl model static =
     { title = WebPageTitleAbout
     , body =
         [ Html.div []
-            [ L18nHtml.paragraph model.translate [] <| WebPageAboutIntroStart
-                { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
-                , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
-                }
+            [ L18nHtml.mdBlock model.translate [] <|
+                WebPageAboutIntroStart
+                    { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
+                    , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
+                    }
             ]
         , Html.div []
-            [ Html.p []
-                [ L18nHtml.text model.translate WebPageAboutIntroReachUs
-                , Html.ul []
-                    [ Html.li [] [ Html.a [ href "mailto:elizabeth@bckt.xyz" ] [ Html.text "elizabeth@bckt.xyz" ] ]
-                    , Html.li [] [ Html.a [ href "mailto:glen@bckt.xyz" ] [ Html.text "glen@bckt.xyz" ] ]
-                    ]
+            [ L18nHtml.paragraph model.translate [] WebPageAboutIntroReachUs
+            , Html.ul []
+                [ Html.li [] [ Html.a [ href "mailto:elizabeth@bckt.xyz" ] [ Html.text "elizabeth@bckt.xyz" ] ]
+                , Html.li [] [ Html.a [ href "mailto:glen@bckt.xyz" ] [ Html.text "glen@bckt.xyz" ] ]
                 ]
             ]
         ]

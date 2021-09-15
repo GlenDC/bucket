@@ -136,7 +136,7 @@ view maybeUrl sharedModel model static =
     { title = WebPageTitleHome
     , body =
         [ Html.div []
-            [ L18nHtml.paragraph sharedModel.translate [] <|
+            [ L18nHtml.mdBlock sharedModel.translate [] <|
                 WebPageHomeIntro
                     { subject = sharedModel.translate model.randomIntroSubjects.activeItem
                     , topic = sharedModel.translate model.randomIntroTopics.activeItem

@@ -16,11 +16,13 @@ translate text =
 
         WebPageHomeIntro params ->
             String.concat
-                [ "**Bucket** The Free and Open Source Time Tracker for "
+                [ "**Bucket** The Free and Open Source Time Tracker for _"
                 , params.subject
-                , " who "
+                , """_
+
+who _"""
                 , params.topic
-                , "."
+                , "_."
                 ]
 
         WebPageHomeIntroSubjectA ->
@@ -33,7 +35,7 @@ translate text =
             "dreamers"
 
         WebPageHomeIntroSubjectD ->
-            "are game changers"
+            "game changers"
 
         WebPageHomeIntroTopicA ->
             "grow forever"
@@ -88,7 +90,7 @@ translate text =
 
         WebPageAboutIntroStart params ->
             String.concat
-                [ "**Bucket** is made with love and dedication by"
+                [ "**Bucket** is made with love and dedication by "
                 , params.creatorElizabeth
                 , " and "
                 , params.creatorGlen
@@ -105,33 +107,24 @@ translate text =
         WebPageTitleDonate ->
             "Donate"
 
-        WebPageDonateIntroP1 ->
+        WebPageDonateIntro params ->
             """
-            You can support us in many ways.
-            Contributing to our software and meta content is one way.
-            That can be done by heading over to our source code repository or reaching out to us.
-            Providing us with feedback is another way to support us.
-            """
+You can support us in many ways.
+Contributing to our software and meta content is one way.
+That can be done by heading over to our source code repository or reaching out to us.
+Providing us with feedback is another way to support us.
 
-        WebPageDonateIntroP2 ->
-            """
-            As we are however building, maintaining and supporting Bucket
-            and other Plabajo projects in our spare time, in between parenting, work and other duties,
-            some financial income is also welcome.
-            """
+As we are however building, maintaining and supporting Bucket
+and other Plabajo projects in our spare time, in between parenting, work and other duties,
+some financial income is also welcome.
 
-        WebPageDonateIntroP3 ->
-            """
-            In the future you'll be able to get a premium subscription for Bucket
-            which will give you premium features such as cloud support,
-            share options, and access to closed beta releases.
-            """
+In the future you'll be able to get a premium subscription for Bucket
+which will give you premium features such as cloud support,
+share options, and access to closed beta releases.
 
-        WebPageDonateIntroP4 params ->
-            """
-            You can also be a Patreon supporter.
-            This way you'll provide us with a monthly amount of your choosing,
-            which allows us to continue our work:
+You can also be a Patreon supporter.
+This way you'll provide us with a monthly amount of your choosing,
+which allows us to continue our work:
             """
                 ++ params.linkPatreon
 

@@ -44,10 +44,7 @@ type
       -- Website: Page: Donate
     | WebNavItemDonate
     | WebPageTitleDonate
-    | WebPageDonateIntroP1
-    | WebPageDonateIntroP2
-    | WebPageDonateIntroP3
-    | WebPageDonateIntroP4
+    | WebPageDonateIntro
         { linkPatreon : String
         }
       -- Website: Footer

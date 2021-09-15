@@ -212,7 +212,7 @@ view sharedData page model toMsg pageView =
                 [ class "footer" ]
                 [ Html.div
                     [ class "content has-text-centered" ]
-                    [ L18nHtml.paragraph model.translate [] <|
+                    [ L18nHtml.mdBlock model.translate [] <|
                         WebFooter
                             { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
                             , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
