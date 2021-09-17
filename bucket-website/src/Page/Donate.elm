@@ -61,6 +61,6 @@ view maybeUrl model static =
     { title = WebPageTitleDonate
     , body =
         [ L18nHtml.mdBlock model.translate [] <|
-            WebPageDonateIntro { linkPatreon = "[patreon.com/plabajo](https://patreon.com/plabajo)" }
+            WebPageDonateIntro { linkPatreon = "[patreon.com/plabayo](https://patreon.com/plabayo)" }
         ]
     }

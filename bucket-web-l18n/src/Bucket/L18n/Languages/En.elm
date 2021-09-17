@@ -122,7 +122,7 @@ That can be done by heading over to our source code repository or reaching out t
 Providing us with feedback is another way to support us.
 
 As we are however building, maintaining and supporting Bucket
-and other Plabajo projects in our spare time, in between parenting, work and other duties,
+and other Plabayo projects in our spare time, in between parenting, work and other duties,
 some financial income is also welcome.
 
 In the future you'll be able to get a premium subscription for Bucket

@@ -194,12 +194,12 @@ view sharedData page model toMsg pageView =
                         [ class "navbar-start" ]
                         [ navItemWithIcon model WebNavItemApp "https://app.bckt.xyz" "fas fa-play"
                         , navItemWithIcon model WebNavItemGuide "/guide" "fas fa-book"
-                        , navItemWithIcon model WebNavItemBlog  "https://plabajo.tech/blog" "fas fa-newspaper"
-                        , navItemWithIcon model WebNavItemRoadmap "https://github.com/plabajo/bucket/milestones?direction=asc&sort=due_date&state=open" "fas fa-map"
+                        , navItemWithIcon model WebNavItemBlog  "https://plabayo.tech/blog" "fas fa-newspaper"
+                        , navItemWithIcon model WebNavItemRoadmap "https://github.com/plabayo/bucket/milestones?direction=asc&sort=due_date&state=open" "fas fa-map"
                         ]
                     , Html.div
                         [ class "navbar-end" ]
-                        [ navItemWithIcon model WebNavItemSource "https://github.com/plabajo/bucket" "fab fa-github"
+                        [ navItemWithIcon model WebNavItemSource "https://github.com/plabayo/bucket" "fab fa-github"
                         , navItemWithIcon model WebNavItemAbout "/about" "fas fa-users"
                         , navItemWithIcon model WebNavItemDonate "/donate" "fas fa-heart"
                         ]
@@ -216,7 +216,7 @@ view sharedData page model toMsg pageView =
                         WebFooter
                             { creatorElizabeth = "[Elizabeth C. Gonzales Belsuzarri](https://www.linkedin.com/in/elizabeth-gonzales-belsuzarri-72173214/)"
                             , creatorGlen = "[Glen Henri J. De Cauwsemaecker](https://www.glendc.com/)"
-                            , copyrightApp = "[GNU GPL v3](https://github.com/plabajo/bucket/blob/main/LICENSE)"
+                            , copyrightApp = "[GNU GPL v3](https://github.com/plabayo/bucket/blob/main/LICENSE)"
                             , copyrightWeb = "[CC BY NC SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)"
                             }
                     ]
